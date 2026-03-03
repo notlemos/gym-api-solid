@@ -19,7 +19,7 @@ export class RegisterService {
     async execute({
     name, email, password
 }: RegisterServiceRequest) {
-    const password_hash = await hash(password, 6)
+    const password_hash = await hassh(password, 6)
 
     const userWithSameEmail = await prisma.user.findUnique({
         where: {
