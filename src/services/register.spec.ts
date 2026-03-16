@@ -14,8 +14,6 @@ describe('Register Use Case', () => {
         sut = new RegisterService(usersRepository)
     })
     it('should be able to register', async () => {
-        
-
         const { user } =  await sut.execute({
             name: 'John Doe',
             email: 'johndoe@sample.com',
@@ -25,8 +23,6 @@ describe('Register Use Case', () => {
         expect(user.id).toEqual(expect.any(String))
     })
     it('should hash user password upon registration', async () => {
-        
-
         const { user } =  await sut.execute({
             name: 'John Doe',
             email: 'johndoe@sample.com',
@@ -42,8 +38,6 @@ describe('Register Use Case', () => {
     })
 
     it('should not be able to register with same email twice', async () => {
-      
-
         const email = 'johndoe@example.com';
 
         await sut.execute({
