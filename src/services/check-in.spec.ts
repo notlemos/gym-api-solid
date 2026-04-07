@@ -21,8 +21,8 @@ describe('Check-In Service', () => {
             title: 'JavaScript Gym',
             description: '',
             phone: '',
-            longitude: new Decimal(0),
-            latitude: new Decimal(0),
+            latitude: new Decimal(-20.5482998),
+            longitude: new Decimal(-47.3855869),
         })
 
         vi.useFakeTimers()
@@ -31,14 +31,6 @@ describe('Check-In Service', () => {
         vi.useRealTimers()
     })
     it('should be able to check in', async () => {
-        gymsRepository.items.push({
-            id: 'gym-01',
-            title: 'JavaScript Gym',
-            description: '',
-            phone: '',
-            longitude: new Decimal(0),
-            latitude: new Decimal(0),
-        })
         const { checkIn } =  await sut.execute({
             gymId: 'gym-01',
             userId: 'user-01',
@@ -88,6 +80,27 @@ describe('Check-In Service', () => {
         })
 
         expect(checkIn.id).toEqual(expect.any(String))
+    })
+    it('should not be able to check in on distant gym', async () => {
+        gymsRepository.items.push({
+            id: 'gym-02',
+            title: 'JavaScript Gym',
+            description: '',
+            phone: '',
+            longitude: new Decimal(-20.5006533),
+            latitude: new Decimal(-47.3396127),
+        })
+
+
+        
+
+        await expect(() => sut.execute({
+            gymId: 'gym-02',
+            userId: 'user-01',
+            userLatitude: -20.5482998,
+            userLongitude: -47.3855869,
+        })).rejects.toBeInstanceOf(Error)
+
     })
 
 })
