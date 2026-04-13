@@ -11,10 +11,6 @@ describe('Fetch User Check-In History Service', () => {
     beforeEach(async () => {
         checkInsRepository = new InMemoryCheckInsRepository()
         sut = new FetchUserCheckInsHistoryService(checkInsRepository)
-
-
-  
-        
     })
     
     it('should be able to fetch check-in history', async () => {
