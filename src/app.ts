@@ -1,9 +1,10 @@
 import fastify from 'fastify'
-import { appRoutes } from './http/routes'
+import { userRoutes } from './http/controllers/users/routes'
 import { ZodError } from 'zod'
 import { env } from './env'
 import fastifyJwt from '@fastify/jwt'
 import 'dotenv/config'
+import { gymsRoutes } from './http/controllers/gyms/routes'
 
 export const app = fastify()
 
@@ -11,18 +12,19 @@ app.register(fastifyJwt, {
     secret: env.JWT_SECRET,
 })
 
-app.register(appRoutes)
+app.register(userRoutes)
+app.register(gymsRoutes)
 
 app.setErrorHandler((error, _, reply) => {
     if (error instanceof ZodError) {
         return reply
             .status(400)
-            .send({ messgae: 'Validation Error', issues: error.format()})
+            .send({ messgae: 'Validation Error', issues: error.format() })
     }
     if (env.NODE_ENV != 'production') {
         console.error(error)
     } else {
         // TODO: here we should log to an external tool like datadog/newrelic/sentry
     }
-    return reply.status(500).send({message: "Internal Server Error."})
+    return reply.status(500).send({ message: "Internal Server Error." })
 })
