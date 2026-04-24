@@ -1,6 +1,5 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { UserAlreadyExistsError } from '@/services/errors/user-already-exists-error'
 import { makeCreateGymService } from '@/services/factories/make-create-gym-service'
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {

@@ -5,7 +5,7 @@ import { profile } from "./profile";
 import { verifyJWT } from "../../middlewares/verift-jwt";
 
 
-export async function appRoutes(app: FastifyInstance) {
+export async function userRoutes(app: FastifyInstance) {
     app.post('/users', register)
     app.post('/sessions', authenticate)
 
