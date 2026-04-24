@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, afterEach, vi} from 'vitest'
+import { expect, describe, it, beforeEach, afterEach, vi } from 'vitest'
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { CheckInService } from './check-in'
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
@@ -27,20 +27,19 @@ describe('Check-In Service', () => {
             latitude: -20.5482998,
             longitude: -47.3855869,
         })
-       
+
         vi.useFakeTimers()
     })
     afterEach(() => {
         vi.useRealTimers()
     })
     it('should be able to check in', async () => {
-        const { checkIn } =  await sut.execute({
+        const { checkIn } = await sut.execute({
             gymId: 'gym-01',
             userId: 'user-01',
             userLatitude: -20.5482998,
             userLongitude: -47.3855869,
         })
-        console.log(checkIn.created_at)
 
         expect(checkIn.id).toEqual(expect.any(String))
 
@@ -75,7 +74,7 @@ describe('Check-In Service', () => {
 
         vi.setSystemTime(new Date(2022, 0, 21, 8, 0, 0))
 
-        const { checkIn } =  await sut.execute({
+        const { checkIn } = await sut.execute({
             gymId: 'gym-01',
             userId: 'user-01',
             userLatitude: -20.5482998,
@@ -95,7 +94,7 @@ describe('Check-In Service', () => {
         })
 
 
-        
+
 
         await expect(() => sut.execute({
             gymId: 'gym-02',
