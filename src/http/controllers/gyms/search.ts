@@ -4,17 +4,17 @@ import { makeSearchGymsService } from '@/services/factories/make-search-gyms-ser
 
 export async function search(request: FastifyRequest, reply: FastifyReply) {
     const searchGymQuerySchema = z.object({
-        query: z.string(),
+        q: z.string(),
         page: z.coerce.number().min(1).default(1)
     })
 
-    const { query, page } = searchGymQuerySchema.parse(request.query)
+    const { q, page } = searchGymQuerySchema.parse(request.query)
 
 
     const searchGymService = makeSearchGymsService()
     const { gyms } = await searchGymService.execute({
-        query,
-        page
+        query: q,
+        page,
     })
 
     return reply.status(200).send({
