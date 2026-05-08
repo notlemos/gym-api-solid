@@ -17,14 +17,14 @@ describe('Refresh Token (e2e)', () => {
             .post('/users')
             .send({
                 name: 'John Doe',
-                email: 'johndoe@example.com',
+                email: 'johndoeREFRESH@example.com',
                 password: '123456',
             })
 
         const authResponse = await request(app.server)
             .post('/sessions')
             .send({
-                email: 'johndoe@example.com',
+                email: 'johndoeREFRESH@example.com',
                 password: '123456',
             })
 

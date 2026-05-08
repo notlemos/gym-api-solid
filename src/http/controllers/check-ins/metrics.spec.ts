@@ -21,10 +21,10 @@ describe('Check-In Metrics (e2e)', () => {
 
         const gym = await prisma.gym.create({
             data: {
-                title: 'JavasScript Gym',
+                title: 'JavasScript metrics Gym',
                 phone: '1699999999',
-                latitude: -27.2092052,
-                longitude: -49.6401091,
+                latitude: -27.20392052,
+                longitude: -49.64301091,
             },
         })
 

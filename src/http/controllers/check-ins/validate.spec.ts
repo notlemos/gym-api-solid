@@ -15,16 +15,16 @@ describe('Validate Check-In (e2e)', () => {
 
     it('should be able to validate a check-in', async () => {
 
-        const { token } = await createAndAuthenticateUser(app)
+        const { token } = await createAndAuthenticateUser(app, true)
 
         const user = await prisma.user.findFirstOrThrow()
 
         const gym = await prisma.gym.create({
             data: {
-                title: 'JavasScript Gym',
+                title: 'JavasScript validate Gym',
                 phone: '1699999999',
-                latitude: -27.2092052,
-                longitude: -49.6401091,
+                latitude: -27.20392052,
+                longitude: -49.64301091,
             },
         })
 
@@ -47,5 +47,7 @@ describe('Validate Check-In (e2e)', () => {
                 id: checkIn.id
             }
         })
+
+        expect(checkIn.validated_at).toEqual(expect.any(Date))
     })
 })

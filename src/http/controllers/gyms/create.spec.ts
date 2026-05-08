@@ -20,11 +20,11 @@ describe('Create Gym (e2e)', () => {
             .post('/gyms')
             .set('Authorization', `Bearer ${token}`)
             .send({
-                title: 'JavaScript Gym',
+                title: 'JavaScript create Gym',
                 description: 'Some Description',
                 phone: '1699999999',
-                latitude: -27.2092052,
-                longitude: -49.6401091,
+                latitude: -27.20292052,
+                longitude: -49.64301091,
             })
 
         expect(response.statusCode).toEqual(201)
